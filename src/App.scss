@@ -1,0 +1,16 @@
+@import 'custom';
+@import 'bootstrap/scss/bootstrap';
+
+$sidebar-width: 400px;
+
+.sidebar {
+  width: $sidebar-width;
+  height: 90vh;
+  margin-right: -$sidebar-width;
+}
+
+.content {
+  width: 100%;
+  height: 90vh;
+  padding-left: $sidebar-width;
+}

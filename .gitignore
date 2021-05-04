@@ -1,0 +1,12 @@
+/node_modules
+/dist
+.env
+
+# vscode files
+/.vscode
+*.code-workspace
+jsconfig.json
+.vs
+
+# redundant test files
+/coverage
