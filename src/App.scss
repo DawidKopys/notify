@@ -34,9 +34,24 @@ $sidebar-width: 400px;
     border-width: 3px !important;
     border-radius: 3px;
     cursor: pointer;
+    position: relative;
 
     &:first-child {
       margin-top: 0 !important;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 8px solid hsl(210, 17%, 93%);
+      border-right: 8px solid white;
+      border-bottom: 8px solid white;
+      border-left: 8px solid hsl(210, 17%, 93%);
+      bottom: 0;
+      right: 0;
     }
   }
 }
