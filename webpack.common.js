@@ -3,6 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
+const mode = process.env.NODE_ENV || 'development';
+// Temporary workaround for 'browserslist' bug that is being patched in the near future
+const target = process.env.NODE_ENV === 'production' ? 'browserslist' : 'web';
+
 module.exports = {
   entry: {
     app: './src/index.js',
@@ -13,6 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  target: target, // webpack bugfix: Live Reloading Not Working with browskerlist present
   module: {
     rules: [
       {
