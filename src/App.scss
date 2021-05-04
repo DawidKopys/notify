@@ -14,3 +14,12 @@ $sidebar-width: 400px;
   height: 90vh;
   padding-left: $sidebar-width;
 }
+.note-search-container {
+  .note-search-btn {
+    width: 140px;
+  }
+
+  .note-search-input {
+    width: 210px;
+  }
+}
