@@ -9,7 +9,9 @@ export default class NoteDetails extends Component {
 
     return (
       <main className='note pt-4 mx-3 d-flex flex-column h-100'>
-        <h3>My Note</h3>
+        <h3 className={note.title ? '' : 'text-secondary font-weight-normal'}>
+          {note.title ? note.title : 'Title'}
+        </h3>
         <div className='d-flex note-category-date text-secondary'>
           <h6>Category</h6>
           <h6 className='px-2'>•</h6>
