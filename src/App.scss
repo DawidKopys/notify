@@ -27,8 +27,6 @@ $sidebar-width: 400px;
 }
 
 .notes-list {
-  height: calc(100vh - 11.375rem);
-
   .note-preview {
     width: calc(#{$sidebar-width} - 3rem);
     border-width: 3px !important;
@@ -54,4 +52,8 @@ $sidebar-width: 400px;
       right: 0;
     }
   }
+}
+
+.note-text {
+  outline: none;
 }

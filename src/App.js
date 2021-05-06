@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <div className='container mt-5'>
         {/* todo: remiove bg-white */}
-        <aside className='sidebar float-left pl-3 bg-white'>
+        <aside className='sidebar float-left pl-3 d-flex flex-column'>
           <div className='note-search-container d-flex justify-content-between my-4'>
             <input type='text' className='form-control note-search-input' />
             <button
@@ -17,7 +17,7 @@ export default class App extends Component {
             </button>
           </div>
           <h5>All Notes </h5>
-          <ul className='list-unstyled notes-list overflow-auto'>
+          <ul className='list-unstyled notes-list overflow-auto flex-grow-1'>
             <li className='note-preview p-2 my-3 bg-light border-top border-primary'>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et
               inventore ducimus dolores assumenda!
@@ -28,7 +28,6 @@ export default class App extends Component {
             </li>
           </ul>
         </aside>
-        {/* todo: remiove bg-light */}
         <div className='content'>
           <main className='note pt-4 mx-3 d-flex flex-column h-100'>
             <h3>My Note</h3>
@@ -38,10 +37,11 @@ export default class App extends Component {
               <h6>Date</h6>
             </div>
             <textarea
-              className='note-text w-100 flex-grow-1'
+              className='note-text w-100 flex-grow-1 border-0'
               name=''
               id=''
-            ></textarea>
+              value='Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!'
+            />
           </main>
         </div>
       </div>
