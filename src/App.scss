@@ -13,6 +13,7 @@
   height: calc(100vh - 4rem);
   padding-left: $sidebar-width;
 }
+
 .note-search-container {
   margin-right: 2rem;
 
@@ -23,8 +24,4 @@
   .note-search-input {
     width: 210px;
   }
-}
-
-.note-text {
-  outline: none;
 }
