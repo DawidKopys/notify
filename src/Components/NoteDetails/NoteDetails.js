@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './NoteDetails.scss';
 
 import NoteText from 'Components/NoteText/NoteText';
+
 export default class NoteDetails extends Component {
   render() {
     return (
