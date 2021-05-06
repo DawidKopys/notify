@@ -1,11 +1,21 @@
 @import 'Src/variables';
 
 .note-preview {
+  $padding: 0.5rem;
+  $line-height: 1.8rem;
+  $line-number: 3;
+
   width: calc(#{$sidebar-width} - 3rem);
   border-width: 3px !important;
   border-radius: 3px;
   cursor: pointer;
   position: relative;
+
+  /* Only show $line-number of lines */
+  overflow: hidden;
+  padding: $padding;
+  line-height: $line-height;
+  max-height: calc(#{$line-height} * #{$line-number} + #{$padding} * 2);
 
   &:first-child {
     margin-top: 0 !important;

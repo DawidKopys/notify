@@ -8,8 +8,9 @@ import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 export default class App extends Component {
   state = {
     notes: [
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
+      'Lorem ipsum dolor sit.',
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
     ],
   };
