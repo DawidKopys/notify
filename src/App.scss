@@ -1,7 +1,6 @@
-@import 'custom';
+@import 'custom-bs-variables';
 @import 'bootstrap/scss/bootstrap';
-
-$sidebar-width: 400px;
+@import 'variables';
 
 .sidebar {
   width: $sidebar-width;
@@ -23,34 +22,6 @@ $sidebar-width: 400px;
 
   .note-search-input {
     width: 210px;
-  }
-}
-
-.notes-list {
-  .note-preview {
-    width: calc(#{$sidebar-width} - 3rem);
-    border-width: 3px !important;
-    border-radius: 3px;
-    cursor: pointer;
-    position: relative;
-
-    &:first-child {
-      margin-top: 0 !important;
-    }
-
-    &::after {
-      position: absolute;
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 8px solid hsl(210, 17%, 93%);
-      border-right: 8px solid white;
-      border-bottom: 8px solid white;
-      border-left: 8px solid hsl(210, 17%, 93%);
-      bottom: 0;
-      right: 0;
-    }
   }
 }
 

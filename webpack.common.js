@@ -59,6 +59,7 @@ module.exports = {
       GlobalContext: path.resolve(__dirname, 'src/context.js'),
       CustomHooks: path.resolve(__dirname, 'src/custom-hooks/'),
       Components: path.resolve(__dirname, 'src/components/'),
+      Src: path.resolve(__dirname, 'src/'),
     },
   },
   optimization: {
