@@ -2,18 +2,6 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'variables';
 
-.sidebar {
-  width: $sidebar-width;
-  height: calc(100vh - 4rem);
-  margin-right: -$sidebar-width;
-}
-
-.content {
-  width: 100%;
-  height: calc(100vh - 4rem);
-  padding-left: $sidebar-width;
-}
-
 .note-search-container {
   margin-right: 2rem;
 

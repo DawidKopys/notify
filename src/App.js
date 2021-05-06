@@ -3,12 +3,13 @@ import './App.scss';
 
 import NotePreview from 'Components/NotePreview/NotePreview';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
+import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 
 export default class App extends Component {
   render() {
     return (
-      <div className='container mt-5'>
-        <aside className='sidebar float-left pl-3 d-flex flex-column'>
+      <HorizontalSplit>
+        <aside className='pl-3 d-flex flex-column'>
           <div className='note-search-container d-flex justify-content-between my-4'>
             <input type='text' className='form-control note-search-input' />
             <button
@@ -19,16 +20,14 @@ export default class App extends Component {
             </button>
           </div>
           <h5>All Notes </h5>
-          <ul className='list-unstyled notes-list overflow-auto flex-grow-1'>
+          <ul className='list-unstyled overflow-auto flex-grow-1'>
             <NotePreview />
             <NotePreview />
             <NotePreview />
           </ul>
         </aside>
-        <div className='content'>
-          <NoteDetails />
-        </div>
-      </div>
+        <NoteDetails />
+      </HorizontalSplit>
     );
   }
 }

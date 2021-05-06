@@ -1,0 +1,14 @@
+@import 'Src/variables';
+
+.horizontal-split-container {
+  flex-direction: row;
+  height: 100vh;
+
+  > :nth-child(1) {
+    flex-basis: $sidebar-width;
+  }
+
+  > :nth-child(2) {
+    flex: 1;
+  }
+}
