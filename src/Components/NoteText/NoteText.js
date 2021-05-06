@@ -3,8 +3,7 @@ import './NoteText.scss';
 
 export default class NoteText extends Component {
   state = {
-    noteText:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
+    noteText: this.props.noteText,
   };
 
   handleChange = (e) => {
