@@ -3,9 +3,15 @@ import './NotePreview.scss';
 
 export default class NotePreview extends Component {
   render() {
+    const isEmpty = !this.props.text;
+
     return (
-      <li className='note-preview my-3 bg-light border-top border-primary'>
-        {this.props.text}
+      <li
+        className={`note-preview my-3 bg-light border-top border-primary ${
+          isEmpty ? 'text-secondary' : ''
+        }`}
+      >
+        {isEmpty ? 'Create note...' : this.props.text}
       </li>
     );
   }

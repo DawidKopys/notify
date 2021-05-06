@@ -1,0 +1,6 @@
+@import 'Src/variables';
+
+.note-title,
+.note-category-date {
+  padding-left: $note-details-padding-left;
+}

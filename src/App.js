@@ -15,12 +15,27 @@ export default class App extends Component {
     ],
   };
 
+  addNote = () => {
+    this.setState((prevState) => {
+      const newState = { ...prevState };
+      newState.notes.unshift('');
+      return newState;
+    });
+  };
+
   render() {
     const { notes } = this.state;
 
     return (
       <HorizontalSplit>
         <aside className='pl-3 d-flex flex-column'>
+          <button
+            type='button'
+            className='btn btn-primary note-add-btn mt-4'
+            onClick={this.addNote}
+          >
+            Add note
+          </button>
           <div className='note-search-container d-flex justify-content-between my-4'>
             <input type='text' className='form-control note-search-input' />
             <button

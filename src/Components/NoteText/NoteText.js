@@ -13,7 +13,8 @@ export default class NoteText extends Component {
   render() {
     return (
       <textarea
-        className='note-text w-100 flex-grow-1 border-0'
+        className='form-control note-text w-100 flex-grow-1 text-body mb-4'
+        placeholder='Create note...'
         name=''
         id=''
         value={this.state.noteText}

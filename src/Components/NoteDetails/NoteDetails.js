@@ -8,8 +8,12 @@ export default class NoteDetails extends Component {
     const { note } = this.props;
 
     return (
-      <main className='note pt-4 mx-3 d-flex flex-column h-100'>
-        <h3 className={note.title ? '' : 'text-secondary font-weight-normal'}>
+      <main className='note pt-3 mx-3 d-flex flex-column h-100'>
+        <h3
+          className={`note-title ${
+            note.title ? '' : 'text-secondary font-weight-normal'
+          }`}
+        >
           {note.title ? note.title : 'Title'}
         </h3>
         <div className='d-flex note-category-date text-secondary'>
