@@ -22,6 +22,7 @@ export default class App extends Component {
           <ul className='list-unstyled notes-list overflow-auto flex-grow-1'>
             <NotePreview />
             <NotePreview />
+            <NotePreview />
           </ul>
         </aside>
         <div className='content'>

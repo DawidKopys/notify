@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './NoteDetails.scss';
 
+import NoteText from 'Components/NoteText/NoteText';
 export default class NoteDetails extends Component {
   render() {
     return (
@@ -11,12 +12,7 @@ export default class NoteDetails extends Component {
           <h6 className='px-2'>•</h6>
           <h6>Date</h6>
         </div>
-        <textarea
-          className='note-text w-100 flex-grow-1 border-0'
-          name=''
-          id=''
-          value='Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!'
-        />
+        <NoteText />
       </main>
     );
   }
