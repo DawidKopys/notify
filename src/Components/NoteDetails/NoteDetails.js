@@ -5,16 +5,16 @@ import NoteText from 'Components/NoteText/NoteText';
 
 export default class NoteDetails extends Component {
   render() {
-    const { note, editNote, noteTextRef } = this.props;
+    const { note, editNote, noteTextRef, noteTextDisabled } = this.props;
 
     return (
       <main className='note pt-3 mx-3 d-flex flex-column h-100'>
         <h3
           className={`note-title ${
-            note.title ? '' : 'text-secondary font-weight-normal'
+            note?.title ? '' : 'text-secondary font-weight-normal'
           }`}
         >
-          {note.title ? note.title : 'Title'}
+          {note?.title ? note.title : 'Title'}
         </h3>
         <div className='d-flex note-category-date text-secondary'>
           <h6>Category</h6>
@@ -22,9 +22,10 @@ export default class NoteDetails extends Component {
           <h6>Date</h6>
         </div>
         <NoteText
-          noteText={note}
+          note={note}
           noteTextRef={noteTextRef}
           editNote={editNote}
+          disabled={noteTextDisabled}
         />
       </main>
     );

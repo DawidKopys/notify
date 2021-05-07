@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react';
 import './App.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 import NotePreview from 'Components/NotePreview/NotePreview';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
@@ -8,10 +9,21 @@ import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 export default class App extends Component {
   state = {
     notes: [
-      'Lorem ipsum\ndolor sit.',
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
+      { text: 'Lorem ipsum\ndolor sit.', id: uuidv4() },
+      {
+        text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
+        id: uuidv4(),
+      },
+      {
+        text:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
+        id: uuidv4(),
+      },
+      {
+        text:
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
+        id: uuidv4(),
+      },
     ],
     currentNoteId: 0,
     noteTextRef: createRef(),
@@ -20,25 +32,37 @@ export default class App extends Component {
   addNote = () => {
     this.setState((prevState) => {
       const newNotes = prevState.notes;
-      newNotes.unshift('');
-      return newNotes;
+      const newNoteId = uuidv4();
+
+      this.state.currentNoteId = 4;
+      newNotes.unshift({ text: '', id: newNoteId });
+      return { notes: newNotes, currentNoteId: newNoteId };
     });
-    this.state.currentNoteId = 0;
-    this.state.noteTextRef.current.focus();
   };
 
   editNote = (e) => {
     this.setState((prevState) => {
-      const newNotes = prevState.notes;
-      newNotes[this.state.currentNoteId] = e.target.value;
+      const prevNotes = prevState.notes;
+      const newNotes = prevNotes.map((note) =>
+        note.id === this.state.currentNoteId
+          ? { ...note, text: e.target.value }
+          : note
+      );
       return { notes: newNotes };
     });
   };
 
   changeCurrentNote = (id) => this.setState({ currentNoteId: id });
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentNoteId !== this.state.currentNoteId) {
+      this.state.noteTextRef.current.focus();
+    }
+  }
+
   render() {
     const { notes, noteTextRef, currentNoteId } = this.state;
+    const currentNote = notes.find((note) => note.id === currentNoteId);
 
     return (
       <HorizontalSplit>
@@ -61,21 +85,21 @@ export default class App extends Component {
           </div>
           <h5>All Notes </h5>
           <ul className='list-unstyled overflow-auto flex-grow-1'>
-            {/* use uuid for notes ids */}
-            {notes.map((note, id) => (
+            {notes.map((note) => (
               <NotePreview
-                text={note}
-                key={id}
-                noteId={id}
+                text={note.text}
+                key={note.id}
+                noteId={note.id}
                 changeCurrentNote={this.changeCurrentNote}
               />
             ))}
           </ul>
         </aside>
         <NoteDetails
-          note={notes[currentNoteId]}
+          note={currentNote}
           noteTextRef={noteTextRef}
           editNote={this.editNote}
+          noteTextDisabled={currentNoteId === 0 ? true : false}
         />
       </HorizontalSplit>
     );
