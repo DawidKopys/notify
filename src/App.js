@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import './App.scss';
 
 import NotePreview from 'Components/NotePreview/NotePreview';
@@ -13,6 +13,7 @@ export default class App extends Component {
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
     ],
+    noteTextRef: createRef(),
   };
 
   addNote = () => {
@@ -21,10 +22,11 @@ export default class App extends Component {
       newState.notes.unshift('');
       return newState;
     });
+    this.state.noteTextRef.current.focus();
   };
 
   render() {
-    const { notes } = this.state;
+    const { notes, noteTextRef } = this.state;
 
     return (
       <HorizontalSplit>
@@ -52,7 +54,7 @@ export default class App extends Component {
             ))}
           </ul>
         </aside>
-        <NoteDetails note={notes[0]} />
+        <NoteDetails note={notes[0]} noteTextRef={noteTextRef} />
       </HorizontalSplit>
     );
   }

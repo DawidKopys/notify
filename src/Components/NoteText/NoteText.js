@@ -11,6 +11,8 @@ export default class NoteText extends Component {
   };
 
   render() {
+    const { noteTextRef } = this.props;
+
     return (
       <textarea
         className='form-control note-text w-100 flex-grow-1 text-body mb-4'
@@ -19,6 +21,7 @@ export default class NoteText extends Component {
         id=''
         value={this.state.noteText}
         onChange={this.handleChange}
+        ref={noteTextRef}
       />
     );
   }
