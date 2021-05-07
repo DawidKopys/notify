@@ -2,16 +2,8 @@ import React, { Component } from 'react';
 import './NoteText.scss';
 
 export default class NoteText extends Component {
-  state = {
-    noteText: this.props.noteText,
-  };
-
-  handleChange = (e) => {
-    this.setState({ noteText: e.target.value });
-  };
-
   render() {
-    const { noteTextRef } = this.props;
+    const { noteText, editNote, noteTextRef } = this.props;
 
     return (
       <textarea
@@ -19,9 +11,10 @@ export default class NoteText extends Component {
         placeholder='Create note...'
         name=''
         id=''
-        value={this.state.noteText}
-        onChange={this.handleChange}
+        value={noteText}
+        onChange={editNote}
         ref={noteTextRef}
+        wrap='hard'
       />
     );
   }

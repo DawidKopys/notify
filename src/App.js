@@ -8,25 +8,35 @@ import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 export default class App extends Component {
   state = {
     notes: [
-      'Lorem ipsum dolor sit.',
+      'Lorem ipsum\ndolor sit.',
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
     ],
+    currentNoteId: 0,
     noteTextRef: createRef(),
   };
 
   addNote = () => {
     this.setState((prevState) => {
-      const newState = { ...prevState };
-      newState.notes.unshift('');
-      return newState;
+      const newNotes = prevState.notes;
+      newNotes.unshift('');
+      return newNotes;
     });
+    this.state.currentNoteId = 0;
     this.state.noteTextRef.current.focus();
   };
 
+  editNote = (e) => {
+    this.setState((prevState) => {
+      const newNotes = prevState.notes;
+      newNotes[this.state.currentNoteId] = e.target.value;
+      return { notes: newNotes };
+    });
+  };
+
   render() {
-    const { notes, noteTextRef } = this.state;
+    const { notes, noteTextRef, currentNoteId } = this.state;
 
     return (
       <HorizontalSplit>
@@ -54,7 +64,11 @@ export default class App extends Component {
             ))}
           </ul>
         </aside>
-        <NoteDetails note={notes[0]} noteTextRef={noteTextRef} />
+        <NoteDetails
+          note={notes[currentNoteId]}
+          noteTextRef={noteTextRef}
+          editNote={this.editNote}
+        />
       </HorizontalSplit>
     );
   }

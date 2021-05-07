@@ -3,7 +3,7 @@
 .note-preview {
   $padding: 0.5rem;
   $line-height: 1.8rem;
-  $line-number: 3;
+  $line-number: 4;
   $height-correction-factor: 2px;
 
   width: calc(#{$sidebar-width} - 3rem);
@@ -11,6 +11,7 @@
   border-radius: 3px;
   cursor: pointer;
   position: relative;
+  white-space: pre-wrap;
 
   /* Only show $line-number of lines */
   overflow: hidden;
