@@ -35,6 +35,8 @@ export default class App extends Component {
     });
   };
 
+  changeCurrentNote = (id) => this.setState({ currentNoteId: id });
+
   render() {
     const { notes, noteTextRef, currentNoteId } = this.state;
 
@@ -59,8 +61,14 @@ export default class App extends Component {
           </div>
           <h5>All Notes </h5>
           <ul className='list-unstyled overflow-auto flex-grow-1'>
-            {notes.map((note) => (
-              <NotePreview text={note} />
+            {/* use uuid for notes ids */}
+            {notes.map((note, id) => (
+              <NotePreview
+                text={note}
+                key={id}
+                noteId={id}
+                changeCurrentNote={this.changeCurrentNote}
+              />
             ))}
           </ul>
         </aside>
