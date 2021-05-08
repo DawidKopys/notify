@@ -1,5 +1,6 @@
 import React, { Children, Component } from 'react';
 import './HorizontalSplit.scss';
+import PropTypes from 'prop-types';
 
 export default class HorizontalSplit extends Component {
   render() {
@@ -18,3 +19,7 @@ export default class HorizontalSplit extends Component {
     );
   }
 }
+
+HorizontalSplit.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+};

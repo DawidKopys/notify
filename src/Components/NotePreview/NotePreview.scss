@@ -12,6 +12,9 @@
   cursor: pointer;
   position: relative;
   white-space: pre-wrap;
+  text-align: start;
+  border: 0 !important;
+  border-top-width: 1px !important;
 
   /* Only show $line-number of lines */
   overflow: hidden;

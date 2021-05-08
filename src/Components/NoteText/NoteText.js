@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './NoteText.scss';
+import PropTypes from 'prop-types';
 
 export default class NoteText extends Component {
   render() {
-    const { note, editNote, noteTextRef, disabled } = this.props;
-    const noteText = disabled
-      ? 'Please, either add a new note or choose an existing one to display.'
-      : note.text;
+    const { noteText, editNote, noteTextRef, disabled } = this.props;
 
     return (
       <textarea
@@ -23,3 +21,13 @@ export default class NoteText extends Component {
     );
   }
 }
+
+NoteText.propTypes = {
+  noteText: PropTypes.string.isRequired,
+  editNote: PropTypes.func.isRequired,
+  noteTextRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(HTMLTextAreaElement) }),
+  ]).isRequired,
+  disabled: PropTypes.bool.isRequired,
+};

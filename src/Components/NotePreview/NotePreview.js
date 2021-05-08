@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import './NotePreview.scss';
+import PropTypes from 'prop-types';
 
 export default class NotePreview extends Component {
   render() {
-    const isEmpty = !this.props.text;
+    const { noteText, noteId, changeCurrentNote } = this.props;
 
     return (
-      <li
-        onClick={() => this.props.changeCurrentNote(this.props.noteId)}
-        className={`note-preview my-3 bg-light border-top border-primary ${
-          isEmpty ? 'text-secondary' : ''
+      <button
+        type='button'
+        onClick={() => changeCurrentNote(noteId)}
+        className={`list-group-item note-preview my-3 bg-light border-top border-primary ${
+          noteText ? '' : 'text-secondary'
         }`}
       >
-        {isEmpty ? 'Create note...' : this.props.text}
-      </li>
+        {noteText === '' ? 'Create note...' : noteText}
+      </button>
     );
   }
 }
+
+NotePreview.propTypes = {
+  noteText: PropTypes.string.isRequired,
+  noteId: PropTypes.string.isRequired,
+  changeCurrentNote: PropTypes.func.isRequired,
+};

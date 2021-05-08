@@ -18,6 +18,7 @@ module.exports = {
         'react/state-in-constructor': 'off',
         'react/jsx-filename-extension': 'off',
         'react/no-direct-mutation-state': 'error',
+        'react/prefer-stateless-function': 'off',
         // 'react/destructuring-assignment': [
         //   'error',
         //   'always',
