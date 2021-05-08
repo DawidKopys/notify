@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 // Temporary workaround for 'browserslist' bug that is being patched in the near future
@@ -51,6 +52,7 @@ module.exports = {
       template: './public/index.html',
       // favicon: './src/assets/R-favicon3.png',
     }),
+    new ESLintPlugin(),
   ],
   resolve: {
     alias: {
