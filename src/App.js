@@ -49,7 +49,7 @@ export default class App extends Component {
       const newNotes = prevState.notes;
       const newNoteId = uuidv4();
 
-      newNotes.unshift({ text: '', id: newNoteId });
+      newNotes.unshift({ id: newNoteId, text: '', title: '' });
       return { notes: newNotes, currentNoteId: newNoteId };
     });
   };
@@ -66,7 +66,30 @@ export default class App extends Component {
     });
   };
 
-  changeCurrentNote = (id) => this.setState({ currentNoteId: id });
+  changeCurrentNote = (id) => {
+    this.deleteCurrentNoteIfEmpty();
+    this.changeCurrentNoteId(id);
+  };
+
+  deleteCurrentNoteIfEmpty = () => {
+    const { notes, currentNoteId } = this.state;
+    const currentNote = notes.find((note) => note.id === currentNoteId);
+    if (currentNote && currentNote.text === '') {
+      this.deleteCurrentNote();
+    }
+  };
+
+  deleteCurrentNote = () => {
+    const { currentNoteId } = this.state;
+    this.deleteNote(currentNoteId);
+  };
+
+  deleteNote = (id) =>
+    this.setState((prevState) => ({
+      notes: prevState.notes.filter((note) => note.id !== id),
+    }));
+
+  changeCurrentNoteId = (id) => this.setState({ currentNoteId: id });
 
   render() {
     const { notes, noteTextRef, currentNoteId } = this.state;
