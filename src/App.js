@@ -34,7 +34,6 @@ export default class App extends Component {
       const newNotes = prevState.notes;
       const newNoteId = uuidv4();
 
-      this.state.currentNoteId = 4;
       newNotes.unshift({ text: '', id: newNoteId });
       return { notes: newNotes, currentNoteId: newNoteId };
     });
