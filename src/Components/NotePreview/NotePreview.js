@@ -10,7 +10,7 @@ export default class NotePreview extends Component {
       <button
         type='button'
         onClick={() => changeCurrentNote(noteId)}
-        className={`list-group-item note-preview my-3 bg-light border-top border-primary ${
+        className={`note-preview mb-3 bg-light border-top border-primary ${
           noteText ? '' : 'text-secondary'
         }`}
       >

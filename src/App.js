@@ -92,7 +92,7 @@ export default class App extends Component {
             </button>
           </div>
           <h5>All Notes </h5>
-          <div className='list-group overflow-auto flex-grow-1'>
+          <div className='overflow-auto flex-grow-1'>
             {notes.map((note) => (
               <NotePreview
                 noteText={note.text}
