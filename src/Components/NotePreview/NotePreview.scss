@@ -3,7 +3,8 @@
 
 .note-preview {
   $padding: 0.5rem;
-  $line-height: 1.8rem;
+  $font-size: 1rem;
+  $line-height: 1.8;
   $line-number: 4;
   $height-correction-factor: 3px;
 
@@ -19,9 +20,15 @@
   overflow: hidden;
   padding: $padding;
   line-height: $line-height;
+  font-size: $font-size !important;
   max-height: calc(
-    #{$line-height} * #{$line-number} + #{$padding} * 2 - #{$height-correction-factor}
+    #{$font-size} * #{$line-height} * #{$line-number} + #{$padding} * 2 - #{$height-correction-factor}
   );
+
+  h6 {
+    line-height: $line-height;
+    font-size: $font-size !important;
+  }
 
   &::after {
     position: absolute;

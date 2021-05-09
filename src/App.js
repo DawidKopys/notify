@@ -17,13 +17,13 @@ export default class App extends Component {
       {
         id: uuidv4(),
         text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-        title: '',
+        title: 'Some title',
       },
       {
         id: uuidv4(),
         text:
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
-        title: '',
+        title: 'Another title',
       },
       {
         id: uuidv4(),
@@ -141,6 +141,7 @@ export default class App extends Component {
           <div className='overflow-auto flex-grow-1'>
             {notes.map((note) => (
               <NotePreview
+                noteTitle={note.title}
                 noteText={note.text}
                 key={note.id}
                 noteId={note.id}

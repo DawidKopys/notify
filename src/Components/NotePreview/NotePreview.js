@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default class NotePreview extends Component {
   render() {
-    const { noteText, noteId, changeCurrentNote } = this.props;
+    const { noteTitle, noteText, noteId, changeCurrentNote } = this.props;
 
     return (
       <button
@@ -14,13 +14,15 @@ export default class NotePreview extends Component {
           noteText ? '' : 'text-secondary'
         }`}
       >
-        {noteText === '' ? 'Create note...' : noteText}
+        {noteTitle && <h6 className='mb-0'>{noteTitle}</h6>}
+        <p className='mb-0'>{noteText === '' ? 'Create note...' : noteText}</p>
       </button>
     );
   }
 }
 
 NotePreview.propTypes = {
+  noteTitle: PropTypes.string.isRequired,
   noteText: PropTypes.string.isRequired,
   noteId: PropTypes.string.isRequired,
   changeCurrentNote: PropTypes.func.isRequired,
