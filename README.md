@@ -1,7 +1,7 @@
 # Notify
 
 Simple app for notes management.
-Build with React, Bootstrap and Webpack.
+Built with React, Bootstrap and Webpack.
 
 ## Setup
 
@@ -24,13 +24,13 @@ After all dependencies are installed, run the development server:
 npm start
 ```
 
-## By building this project I...:
+## By building this project I...
 
 Bootstrap:
 
-- Gained familiarity with Bootstrap docs
+- Became familar with Bootstrap docs
 - Learned how to customize Bootstrap components
-- Gained familiarity with popular Bootstrap Utilities
+- Became familar with popular Bootstrap Utilities
 - Learned Bootsrap's drawbacks
 
 React:
