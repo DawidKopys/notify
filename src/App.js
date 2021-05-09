@@ -67,8 +67,13 @@ export default class App extends Component {
   };
 
   changeCurrentNote = (id) => {
-    this.deleteCurrentNoteIfEmpty();
-    this.changeCurrentNoteId(id);
+    const { currentNoteId, noteTextRef } = this.state;
+    if (currentNoteId !== id) {
+      this.deleteCurrentNoteIfEmpty();
+      this.changeCurrentNoteId(id);
+    } else {
+      noteTextRef.current.focus();
+    }
   };
 
   deleteCurrentNoteIfEmpty = () => {
