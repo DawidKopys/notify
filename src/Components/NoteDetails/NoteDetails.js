@@ -6,18 +6,27 @@ import NoteText from 'Components/NoteText/NoteText';
 
 export default class NoteDetails extends Component {
   render() {
-    const { note, editNote, noteTextRef, noteTextDisabled } = this.props;
+    const {
+      note,
+      editNoteText,
+      editNoteTitle,
+      noteTextRef,
+      noteEditDisabled,
+    } = this.props;
+
+    const bgColorClass = noteEditDisabled ? 'bg-light' : '';
 
     return (
-      <main className='note pt-3 mx-3 d-flex flex-column h-100'>
-        <h3
-          className={`note-title ${
-            note.title ? '' : 'text-secondary font-weight-normal'
-          }`}
-        >
-          {note.title ? note.title : 'Title'}
-        </h3>
-        <div className='d-flex note-category-date text-secondary'>
+      <main className='note my-4 mx-3 d-flex flex-column'>
+        <input
+          type='text'
+          className={`form-control note-title ${bgColorClass}`}
+          placeholder='Title'
+          value={note.title}
+          onChange={editNoteTitle}
+          disabled={noteEditDisabled}
+        />
+        <div className='d-flex note-category-date text-secondary mt-2'>
           <h6>Category</h6>
           <h6 className='px-2'>•</h6>
           <h6>Date</h6>
@@ -25,8 +34,8 @@ export default class NoteDetails extends Component {
         <NoteText
           noteText={note.text}
           noteTextRef={noteTextRef}
-          editNote={editNote}
-          disabled={noteTextDisabled}
+          editNoteText={editNoteText}
+          disabled={noteEditDisabled}
         />
       </main>
     );
@@ -35,6 +44,7 @@ export default class NoteDetails extends Component {
 
 NoteDetails.defaultProps = {
   note: {
+    title: '',
     text: 'Please, either add a new note or choose an existing one to display.',
   },
 };
@@ -45,10 +55,11 @@ NoteDetails.propTypes = {
     text: PropTypes.string,
     title: PropTypes.string,
   }),
-  editNote: PropTypes.func.isRequired,
+  editNoteText: PropTypes.func.isRequired,
+  editNoteTitle: PropTypes.func.isRequired,
   noteTextRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLTextAreaElement) }),
   ]).isRequired,
-  noteTextDisabled: PropTypes.bool.isRequired,
+  noteEditDisabled: PropTypes.bool.isRequired,
 };

@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 
 export default class NoteText extends Component {
   render() {
-    const { noteText, editNote, noteTextRef, disabled } = this.props;
+    const { noteText, editNoteText, noteTextRef, disabled } = this.props;
+    const colorClass = disabled ? 'text-secondary bg-light' : 'text-body';
 
     return (
       <textarea
-        className={`form-control note-text w-100 flex-grow-1 mb-4 ${
-          disabled ? 'text-secondary bg-light' : 'text-body'
-        }`}
+        className={`form-control note-text w-100 flex-grow-1  ${colorClass}`}
         placeholder='Create note...'
         value={noteText}
-        onChange={editNote}
+        onChange={editNoteText}
         ref={noteTextRef}
         wrap='hard'
         disabled={disabled}
@@ -24,7 +23,7 @@ export default class NoteText extends Component {
 
 NoteText.propTypes = {
   noteText: PropTypes.string.isRequired,
-  editNote: PropTypes.func.isRequired,
+  editNoteText: PropTypes.func.isRequired,
   noteTextRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLTextAreaElement) }),

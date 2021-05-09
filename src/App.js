@@ -54,13 +54,26 @@ export default class App extends Component {
     });
   };
 
-  editNote = (e) => {
+  editNoteText = (e) => {
     const { currentNoteId } = this.state;
 
     this.setState((prevState) => {
       const prevNotes = prevState.notes;
       const newNotes = prevNotes.map((note) =>
         note.id === currentNoteId ? { ...note, text: e.target.value } : note
+      );
+      return { notes: newNotes };
+    });
+  };
+
+  // todo: implement editNoteField method? would make our code more dry
+  editNoteTitle = (e) => {
+    const { currentNoteId } = this.state;
+
+    this.setState((prevState) => {
+      const prevNotes = prevState.notes;
+      const newNotes = prevNotes.map((note) =>
+        note.id === currentNoteId ? { ...note, title: e.target.value } : note
       );
       return { notes: newNotes };
     });
@@ -139,8 +152,9 @@ export default class App extends Component {
         <NoteDetails
           note={currentNote}
           noteTextRef={noteTextRef}
-          editNote={this.editNote}
-          noteTextDisabled={currentNoteId === 0}
+          editNoteText={this.editNoteText}
+          editNoteTitle={this.editNoteTitle}
+          noteEditDisabled={currentNoteId === 0}
         />
       </HorizontalSplit>
     );
