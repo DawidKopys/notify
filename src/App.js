@@ -37,10 +37,10 @@ export default class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { currentNoteId, noteTextRef } = this.state;
+    const { currentNoteId } = this.state;
 
     if (prevState.currentNoteId !== currentNoteId) {
-      noteTextRef.current.focus();
+      this.focusCurrentNote();
     }
   }
 
@@ -67,13 +67,18 @@ export default class App extends Component {
   };
 
   changeCurrentNote = (id) => {
-    const { currentNoteId, noteTextRef } = this.state;
+    const { currentNoteId } = this.state;
     if (currentNoteId !== id) {
       this.deleteCurrentNoteIfEmpty();
       this.changeCurrentNoteId(id);
     } else {
-      noteTextRef.current.focus();
+      this.focusCurrentNote();
     }
+  };
+
+  focusCurrentNote = () => {
+    const { noteTextRef } = this.state;
+    noteTextRef.current.focus();
   };
 
   deleteCurrentNoteIfEmpty = () => {
