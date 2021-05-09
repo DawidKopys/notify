@@ -3,6 +3,7 @@ import './NoteDetails.scss';
 import PropTypes from 'prop-types';
 
 import NoteText from 'Components/NoteText/NoteText';
+import NoteTitle from 'Components/NoteTitle/NoteTitle';
 
 export default class NoteDetails extends Component {
   render() {
@@ -14,17 +15,12 @@ export default class NoteDetails extends Component {
       noteEditDisabled,
     } = this.props;
 
-    const bgColorClass = noteEditDisabled ? 'bg-light' : '';
-
     return (
-      <main className='note my-4 mx-3 d-flex flex-column'>
-        <input
-          type='text'
-          className={`form-control note-title ${bgColorClass}`}
-          placeholder='Title'
-          value={note.title}
-          onChange={editNoteTitle}
-          disabled={noteEditDisabled}
+      <main className='my-4 mx-3 d-flex flex-column'>
+        <NoteTitle
+          noteTitle={note.title}
+          editNoteTitle={editNoteTitle}
+          noteEditDisabled={noteEditDisabled}
         />
         <div className='d-flex note-category-date text-secondary mt-2'>
           <h6>Category</h6>
