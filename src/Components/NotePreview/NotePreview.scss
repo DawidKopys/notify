@@ -28,6 +28,9 @@
   h6 {
     line-height: $line-height;
     font-size: $font-size !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &::after {
