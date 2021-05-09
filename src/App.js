@@ -146,6 +146,7 @@ export default class App extends Component {
                 key={note.id}
                 noteId={note.id}
                 changeCurrentNote={this.changeCurrentNote}
+                active={currentNoteId === note.id}
               />
             ))}
           </div>
