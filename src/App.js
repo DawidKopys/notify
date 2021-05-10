@@ -146,6 +146,7 @@ export default class App extends Component {
                 key={note.id}
                 noteId={note.id}
                 changeCurrentNote={this.changeCurrentNote}
+                deleteNote={this.deleteNote}
                 active={currentNoteId === note.id}
               />
             ))}
@@ -156,7 +157,7 @@ export default class App extends Component {
           noteTextRef={noteTextRef}
           editNoteText={this.editNoteText}
           editNoteTitle={this.editNoteTitle}
-          noteEditDisabled={currentNoteId === 0}
+          noteEditDisabled={!currentNote}
         />
       </HorizontalSplit>
     );
