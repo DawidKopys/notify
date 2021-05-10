@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
 import './NoteText.scss';
 import PropTypes from 'prop-types';
+import withDateUpdater from 'Components/HOCs/withDateUpdater';
 
-import getCurrentDate from 'Src/utilities';
-
-export default class NoteText extends Component {
-  state = {
-    wasEdited: false,
-  };
-
-  handleBlur = () => {
-    const { wasEdited } = this.state;
-    const { editNoteTimestamp } = this.props;
-
-    if (wasEdited) {
-      editNoteTimestamp(getCurrentDate());
-      this.setState({ wasEdited: false });
-    }
-  };
-
-  handleChange = (e) => {
-    const { editNoteText } = this.props;
-
-    editNoteText(e.target.value);
-    this.setState({ wasEdited: true });
-  };
-
+class NoteText extends Component {
   render() {
-    const { noteText, noteTextRef, disabled } = this.props;
+    const {
+      noteText,
+      noteTextRef,
+      disabled,
+      handleBlur,
+      handleChange,
+    } = this.props;
     const colorClass = disabled ? 'text-secondary bg-light' : 'text-body';
 
     return (
@@ -35,8 +19,8 @@ export default class NoteText extends Component {
         className={`form-control note-text w-100 flex-grow-1  ${colorClass}`}
         placeholder='Create note...'
         value={noteText}
-        onChange={this.handleChange}
-        onBlur={this.handleBlur}
+        onChange={handleChange}
+        onBlur={handleBlur}
         ref={noteTextRef}
         wrap='hard'
         disabled={disabled}
@@ -47,11 +31,13 @@ export default class NoteText extends Component {
 
 NoteText.propTypes = {
   noteText: PropTypes.string.isRequired,
-  editNoteText: PropTypes.func.isRequired,
-  editNoteTimestamp: PropTypes.func.isRequired,
   noteTextRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLTextAreaElement) }),
   ]).isRequired,
   disabled: PropTypes.bool.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
+
+export default withDateUpdater(NoteText);

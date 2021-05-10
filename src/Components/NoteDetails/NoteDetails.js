@@ -20,7 +20,7 @@ export default class NoteDetails extends Component {
       <main className='my-4 mx-3 d-flex flex-column'>
         <NoteTitle
           noteTitle={note.title}
-          editNoteTitle={editNoteTitle}
+          editContent={editNoteTitle}
           editNoteTimestamp={editNoteTimestamp}
           noteEditDisabled={noteEditDisabled}
         />
@@ -37,7 +37,7 @@ export default class NoteDetails extends Component {
         <NoteText
           noteText={note.text}
           noteTextRef={noteTextRef}
-          editNoteText={editNoteText}
+          editContent={editNoteText}
           editNoteTimestamp={editNoteTimestamp}
           disabled={noteEditDisabled}
         />

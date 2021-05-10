@@ -1,33 +1,17 @@
+// eslint-disable-next-line max-classes-per-file
 import React, { Component } from 'react';
 import './NoteTitle.scss';
 import PropTypes from 'prop-types';
+import withDateUpdater from 'Components/HOCs/withDateUpdater';
 
-import getCurrentDate from 'Src/utilities';
-
-export default class NoteTitle extends Component {
-  state = {
-    wasEdited: false,
-  };
-
-  handleBlur = () => {
-    const { wasEdited } = this.state;
-    const { editNoteTimestamp } = this.props;
-
-    if (wasEdited) {
-      editNoteTimestamp(getCurrentDate());
-      this.setState({ wasEdited: false });
-    }
-  };
-
-  handleChange = (e) => {
-    const { editNoteTitle } = this.props;
-
-    editNoteTitle(e.target.value);
-    this.setState({ wasEdited: true });
-  };
-
+class NoteTitle extends Component {
   render() {
-    const { noteTitle, noteEditDisabled } = this.props;
+    const {
+      noteTitle,
+      noteEditDisabled,
+      handleBlur,
+      handleChange,
+    } = this.props;
     const bgColorClass = noteEditDisabled ? 'bg-light' : '';
 
     return (
@@ -36,8 +20,8 @@ export default class NoteTitle extends Component {
         className={`form-control note-title text-body ${bgColorClass}`}
         placeholder='Title'
         value={noteTitle}
-        onChange={this.handleChange}
-        onBlur={this.handleBlur}
+        onChange={handleChange}
+        onBlur={handleBlur}
         disabled={noteEditDisabled}
       />
     );
@@ -46,7 +30,9 @@ export default class NoteTitle extends Component {
 
 NoteTitle.propTypes = {
   noteTitle: PropTypes.string.isRequired,
-  editNoteTitle: PropTypes.func.isRequired,
-  editNoteTimestamp: PropTypes.func.isRequired,
   noteEditDisabled: PropTypes.bool.isRequired,
+  handleBlur: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
+
+export default withDateUpdater(NoteTitle);
