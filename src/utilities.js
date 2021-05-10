@@ -1,4 +1,17 @@
-const dateToString = (dateObj) => {
+const getTwoNumberDigit = (number) =>
+  number.toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  });
+
+const dayNumberToString = (dayNumber) => {
+  const nth = (n) =>
+    ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th';
+  const dayNumberString = getTwoNumberDigit(dayNumber);
+  return dayNumberString + nth(dayNumber);
+};
+
+const monthNumberToString = (monthNumber) => {
   const monthMap = new Map([
     [0, 'January'],
     [1, 'February'],
@@ -14,23 +27,21 @@ const dateToString = (dateObj) => {
     [11, 'December'],
   ]);
 
-  const dayNumberToString = (dayNumber) => {
-    const nth = (n) =>
-      ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th';
-
-    const dayNumberString = dayNumber.toLocaleString('en-US', {
-      minimumIntegerDigits: 2,
-      useGrouping: false,
-    });
-
-    return dayNumberString + nth(dayNumber);
-  };
-
-  const dd = dayNumberToString(dateObj.getDate());
-  const mm = monthMap.get(dateObj.getMonth());
-  const yyyy = dateObj.getFullYear();
-
-  return `${dd} ${mm} ${yyyy}`;
+  return monthMap.get(monthNumber);
 };
 
-export default dateToString;
+const timeNumberToString = (timeNumber) => getTwoNumberDigit(timeNumber);
+
+const getCurrentDate = () => {
+  const currentDate = new Date();
+
+  const dd = dayNumberToString(currentDate.getDate());
+  const mm = monthNumberToString(currentDate.getMonth());
+  const yyyy = currentDate.getFullYear();
+  const hours = timeNumberToString(currentDate.getHours());
+  const minutes = timeNumberToString(currentDate.getMinutes());
+
+  return `${dd} ${mm} ${yyyy} ${hours}:${minutes}`;
+};
+
+export default getCurrentDate;

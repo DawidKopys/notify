@@ -11,6 +11,7 @@ export default class NoteDetails extends Component {
       note,
       editNoteText,
       editNoteTitle,
+      editNoteTimestamp,
       noteTextRef,
       noteEditDisabled,
     } = this.props;
@@ -20,19 +21,24 @@ export default class NoteDetails extends Component {
         <NoteTitle
           noteTitle={note.title}
           editNoteTitle={editNoteTitle}
+          editNoteTimestamp={editNoteTimestamp}
           noteEditDisabled={noteEditDisabled}
         />
-        <div className='d-flex note-category-date text-secondary mt-2'>
-          <h6>Category</h6>
-          <h6 className='px-2'>•</h6>
-          <h6 title={note.timestamp ? '' : `Last updated at ${note.timestamp}`}>
+        <div className='d-flex note-category-date text-secondary my-2'>
+          <p className='m-0'>Category</p>
+          <p className='px-2 m-0'>•</p>
+          <p
+            className='m-0'
+            title={note.timestamp ? `Last updated at ${note.timestamp}` : ''}
+          >
             {note.timestamp ? note.timestamp : 'Date'}
-          </h6>
+          </p>
         </div>
         <NoteText
           noteText={note.text}
           noteTextRef={noteTextRef}
           editNoteText={editNoteText}
+          editNoteTimestamp={editNoteTimestamp}
           disabled={noteEditDisabled}
         />
       </main>
@@ -56,6 +62,7 @@ NoteDetails.propTypes = {
   }),
   editNoteText: PropTypes.func.isRequired,
   editNoteTitle: PropTypes.func.isRequired,
+  editNoteTimestamp: PropTypes.func.isRequired,
   noteTextRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLTextAreaElement) }),

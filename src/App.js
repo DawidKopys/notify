@@ -6,33 +6,33 @@ import NotePreview from 'Components/NotePreview/NotePreview';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
 import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 
-import dateToString from './utilities';
+import getCurrentDate from 'Src/utilities';
 
 export default class App extends Component {
   state = {
     notes: [
       {
         id: uuidv4(),
-        timestamp: dateToString(new Date()),
+        timestamp: getCurrentDate(),
         text: 'Lorem ipsum\ndolor sit.',
         title: '',
       },
       {
         id: uuidv4(),
-        timestamp: dateToString(new Date()),
+        timestamp: getCurrentDate(),
         text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
         title: 'Some title',
       },
       {
         id: uuidv4(),
-        timestamp: dateToString(new Date()),
+        timestamp: getCurrentDate(),
         text:
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
         title: 'Another title',
       },
       {
         id: uuidv4(),
-        timestamp: dateToString(new Date()),
+        timestamp: getCurrentDate(),
         text:
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
         title: '',
@@ -54,7 +54,7 @@ export default class App extends Component {
     this.setState((prevState) => {
       const newNotes = prevState.notes;
       const newNoteId = uuidv4();
-      const newNoteTimestamp = dateToString(new Date());
+      const newNoteTimestamp = getCurrentDate();
 
       newNotes.unshift({
         id: newNoteId,
@@ -66,26 +66,38 @@ export default class App extends Component {
     });
   };
 
-  editNoteText = (e) => {
+  editNoteText = (newText) => {
     const { currentNoteId } = this.state;
 
     this.setState((prevState) => {
       const prevNotes = prevState.notes;
       const newNotes = prevNotes.map((note) =>
-        note.id === currentNoteId ? { ...note, text: e.target.value } : note
+        note.id === currentNoteId ? { ...note, text: newText } : note
       );
       return { notes: newNotes };
     });
   };
 
   // todo: implement editNoteField method? would make our code more dry
-  editNoteTitle = (e) => {
+  editNoteTitle = (newTitle) => {
     const { currentNoteId } = this.state;
 
     this.setState((prevState) => {
       const prevNotes = prevState.notes;
       const newNotes = prevNotes.map((note) =>
-        note.id === currentNoteId ? { ...note, title: e.target.value } : note
+        note.id === currentNoteId ? { ...note, title: newTitle } : note
+      );
+      return { notes: newNotes };
+    });
+  };
+
+  editNoteTimestamp = (newTimestamp) => {
+    const { currentNoteId } = this.state;
+
+    this.setState((prevState) => {
+      const prevNotes = prevState.notes;
+      const newNotes = prevNotes.map((note) =>
+        note.id === currentNoteId ? { ...note, timestamp: newTimestamp } : note
       );
       return { notes: newNotes };
     });
@@ -169,6 +181,7 @@ export default class App extends Component {
           noteTextRef={noteTextRef}
           editNoteText={this.editNoteText}
           editNoteTitle={this.editNoteTitle}
+          editNoteTimestamp={this.editNoteTimestamp}
           noteEditDisabled={!currentNote}
         />
       </HorizontalSplit>
