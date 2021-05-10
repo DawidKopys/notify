@@ -66,38 +66,25 @@ export default class App extends Component {
     });
   };
 
-  editNoteText = (newText) => {
-    const { currentNoteId } = this.state;
-
-    this.setState((prevState) => {
-      const prevNotes = prevState.notes;
-      const newNotes = prevNotes.map((note) =>
-        note.id === currentNoteId ? { ...note, text: newText } : note
-      );
-      return { notes: newNotes };
-    });
+  editCurentNoteText = (newText) => {
+    this.editCurrentNoteProperty('text', newText);
   };
 
-  // todo: implement editNoteField method? would make our code more dry
-  editNoteTitle = (newTitle) => {
-    const { currentNoteId } = this.state;
-
-    this.setState((prevState) => {
-      const prevNotes = prevState.notes;
-      const newNotes = prevNotes.map((note) =>
-        note.id === currentNoteId ? { ...note, title: newTitle } : note
-      );
-      return { notes: newNotes };
-    });
+  editCurentNoteTitle = (newTitle) => {
+    this.editCurrentNoteProperty('title', newTitle);
   };
 
-  editNoteTimestamp = (newTimestamp) => {
+  editCurrentNoteTimestamp = (newTimestamp) => {
+    this.editCurrentNoteProperty('timestamp', newTimestamp);
+  };
+
+  editCurrentNoteProperty = (propertyName, newValue) => {
     const { currentNoteId } = this.state;
 
     this.setState((prevState) => {
       const prevNotes = prevState.notes;
       const newNotes = prevNotes.map((note) =>
-        note.id === currentNoteId ? { ...note, timestamp: newTimestamp } : note
+        note.id === currentNoteId ? { ...note, [propertyName]: newValue } : note
       );
       return { notes: newNotes };
     });
@@ -179,9 +166,9 @@ export default class App extends Component {
         <NoteDetails
           note={currentNote}
           noteTextRef={noteTextRef}
-          editNoteText={this.editNoteText}
-          editNoteTitle={this.editNoteTitle}
-          editNoteTimestamp={this.editNoteTimestamp}
+          editNoteText={this.editCurentNoteText}
+          editNoteTitle={this.editCurentNoteTitle}
+          editNoteTimestamp={this.editCurrentNoteTimestamp}
           noteEditDisabled={!currentNote}
         />
       </HorizontalSplit>
