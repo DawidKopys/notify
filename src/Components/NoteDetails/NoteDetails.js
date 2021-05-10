@@ -25,7 +25,9 @@ export default class NoteDetails extends Component {
         <div className='d-flex note-category-date text-secondary mt-2'>
           <h6>Category</h6>
           <h6 className='px-2'>•</h6>
-          <h6>Date</h6>
+          <h6 title={note.timestamp ? '' : `Last updated at ${note.timestamp}`}>
+            {note.timestamp ? note.timestamp : 'Date'}
+          </h6>
         </div>
         <NoteText
           noteText={note.text}
@@ -40,14 +42,15 @@ export default class NoteDetails extends Component {
 
 NoteDetails.defaultProps = {
   note: {
-    title: '',
     text: 'Please, either add a new note or choose an existing one to display.',
+    title: '',
   },
 };
 
 NoteDetails.propTypes = {
   note: PropTypes.exact({
     id: PropTypes.string,
+    timestamp: PropTypes.string,
     text: PropTypes.string,
     title: PropTypes.string,
   }),

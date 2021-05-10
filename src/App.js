@@ -6,27 +6,33 @@ import NotePreview from 'Components/NotePreview/NotePreview';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
 import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 
+import dateToString from './utilities';
+
 export default class App extends Component {
   state = {
     notes: [
       {
         id: uuidv4(),
+        timestamp: dateToString(new Date()),
         text: 'Lorem ipsum\ndolor sit.',
         title: '',
       },
       {
         id: uuidv4(),
+        timestamp: dateToString(new Date()),
         text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
         title: 'Some title',
       },
       {
         id: uuidv4(),
+        timestamp: dateToString(new Date()),
         text:
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
         title: 'Another title',
       },
       {
         id: uuidv4(),
+        timestamp: dateToString(new Date()),
         text:
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et inventore ducimus dolores assumenda!',
         title: '',
@@ -48,8 +54,14 @@ export default class App extends Component {
     this.setState((prevState) => {
       const newNotes = prevState.notes;
       const newNoteId = uuidv4();
+      const newNoteTimestamp = dateToString(new Date());
 
-      newNotes.unshift({ id: newNoteId, text: '', title: '' });
+      newNotes.unshift({
+        id: newNoteId,
+        timestamp: newNoteTimestamp,
+        text: '',
+        title: '',
+      });
       return { notes: newNotes, currentNoteId: newNoteId };
     });
   };
