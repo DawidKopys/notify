@@ -25,6 +25,7 @@ export default class NotePreview extends Component {
       active,
     } = this.props;
     const textColorClass = noteText ? '' : 'text-secondary';
+    const text = noteText === '' ? 'Create note...' : noteText;
     const borderClass = active
       ? 'border-top border-left note-preview--active'
       : 'border-top';
@@ -34,7 +35,7 @@ export default class NotePreview extends Component {
         role='button'
         onClick={() => changeCurrentNote(noteId)}
         onKeyPress={this.handleKeyPress}
-        className={`note-preview mb-3 border-primary ${borderClass} ${textColorClass}`}
+        className={`note-preview mb-3 border-primary ${borderClass}`}
         tabIndex={0}
       >
         <button
@@ -47,7 +48,7 @@ export default class NotePreview extends Component {
           <span aria-hidden='true'>&times;</span>
         </button>
         {noteTitle && <h6 className='mb-0'>{noteTitle}</h6>}
-        <p className='mb-0'>{noteText === '' ? 'Create note...' : noteText}</p>
+        <p className={`mb-0 ${textColorClass}`}>{text}</p>
       </div>
     );
   }
