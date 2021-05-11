@@ -2,8 +2,9 @@ import React, { Component, createRef } from 'react';
 import './App.scss';
 import { v4 as uuidv4 } from 'uuid';
 
-import NotePreviewList from 'Components/NotePreviewList/NotePreviewList';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
+import NotePreviewList from 'Components/NotePreviewList/NotePreviewList';
+import NoteSearch from 'Components/NoteSearch/NoteSearch';
 import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 
 import getCurrentDate from 'Src/utilities';
@@ -43,8 +44,6 @@ export default class App extends Component {
   };
 
   noteTextRef = createRef();
-
-  searchFieldRef = createRef();
 
   componentDidUpdate(prevProps, prevState) {
     const { currentNoteId } = this.state;
@@ -128,6 +127,8 @@ export default class App extends Component {
 
   changeCurrentNoteId = (id) => this.setState({ currentNoteId: id });
 
+  editSearchPhrase = (phrase) => this.setState({ searchPhrase: phrase });
+
   render() {
     const { notes, currentNoteId, searchPhrase } = this.state;
     const currentNote = notes.find((note) => note.id === currentNoteId);
@@ -142,25 +143,7 @@ export default class App extends Component {
           >
             Add note
           </button>
-          <div className='note-search-container d-flex justify-content-between my-4'>
-            <input
-              type='text'
-              className='form-control note-search-input'
-              ref={this.searchFieldRef}
-            />
-            <button
-              type='button'
-              className='btn btn-outline-primary note-search-btn '
-              // todo: reafactor below code into method
-              onClick={() =>
-                this.setState({
-                  searchPhrase: this.searchFieldRef.current.value.toLowerCase(),
-                })
-              }
-            >
-              Search
-            </button>
-          </div>
+          <NoteSearch editSearchPhrase={this.editSearchPhrase} />
           <NotePreviewList
             notes={notes}
             searchPhrase={searchPhrase}
