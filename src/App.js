@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react';
 import './App.scss';
 import { v4 as uuidv4 } from 'uuid';
 
-import NotePreview from 'Components/NotePreview/NotePreview';
+import NotePreviewList from 'Components/NotePreviewList/NotePreviewList';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
 import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 
@@ -38,7 +38,7 @@ export default class App extends Component {
         title: '',
       },
     ],
-    currentNoteId: 0,
+    currentNoteId: '',
     noteTextRef: createRef(),
   };
 
@@ -149,19 +149,12 @@ export default class App extends Component {
             </button>
           </div>
           <h5>All Notes </h5>
-          <div className='overflow-auto flex-grow-1'>
-            {notes.map((note) => (
-              <NotePreview
-                noteTitle={note.title}
-                noteText={note.text}
-                key={note.id}
-                noteId={note.id}
-                changeCurrentNote={this.changeCurrentNote}
-                deleteNote={this.deleteNote}
-                active={currentNoteId === note.id}
-              />
-            ))}
-          </div>
+          <NotePreviewList
+            notes={notes}
+            currentNoteId={currentNoteId}
+            changeCurrentNote={this.changeCurrentNoteId}
+            deleteNote={this.deleteNote}
+          />
         </aside>
         <NoteDetails
           note={currentNote}
