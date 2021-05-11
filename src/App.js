@@ -108,7 +108,7 @@ export default class App extends Component {
   deleteCurrentNoteIfEmpty = () => {
     const { notes, currentNoteId } = this.state;
     const currentNote = notes.find((note) => note.id === currentNoteId);
-    if (currentNote && currentNote.text === '') {
+    if (currentNote && currentNote.text === '' && currentNote.title === '') {
       this.deleteCurrentNote();
     }
   };
