@@ -161,7 +161,6 @@ export default class App extends Component {
               Search
             </button>
           </div>
-          <h5>All Notes </h5>
           <NotePreviewList
             notes={notes}
             searchPhrase={searchPhrase}

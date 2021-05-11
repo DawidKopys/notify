@@ -20,20 +20,27 @@ export default class NotePreviewList extends Component {
         note.title.toLowerCase().includes(searchPhrase)
     );
 
+    const heading = searchPhrase
+      ? `Showing results for: '${searchPhrase}'`
+      : 'All notes';
+
     return (
-      <div className='overflow-auto flex-grow-1'>
-        {notesToDisplay.map((note) => (
-          <NotePreview
-            noteTitle={note.title}
-            noteText={note.text}
-            key={note.id}
-            noteId={note.id}
-            changeCurrentNote={changeCurrentNote}
-            deleteNote={deleteNote}
-            active={currentNoteId === note.id}
-          />
-        ))}
-      </div>
+      <>
+        <h5>{heading}</h5>
+        <div className='overflow-auto flex-grow-1'>
+          {notesToDisplay.map((note) => (
+            <NotePreview
+              noteTitle={note.title}
+              noteText={note.text}
+              key={note.id}
+              noteId={note.id}
+              changeCurrentNote={changeCurrentNote}
+              deleteNote={deleteNote}
+              active={currentNoteId === note.id}
+            />
+          ))}
+        </div>
+      </>
     );
   }
 }
