@@ -28,6 +28,12 @@ export default class NoteSearch extends Component {
     editSearchPhrase(inputText);
   };
 
+  handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.handleSearchCommit();
+    }
+  };
+
   render() {
     const { inputText } = this.state;
     const clearBtnVisibilityClass = inputText ? 'visible' : 'invisible';
@@ -40,6 +46,7 @@ export default class NoteSearch extends Component {
             className='form-control note-search-input'
             value={inputText}
             onChange={this.handleInputChange}
+            onKeyPress={this.handleEnter}
           />
           <button
             type='button'
