@@ -39,8 +39,12 @@ export default class App extends Component {
       },
     ],
     currentNoteId: '',
-    noteTextRef: createRef(),
+    searchPhrase: '',
   };
+
+  noteTextRef = createRef();
+
+  searchFieldRef = createRef();
 
   componentDidUpdate(prevProps, prevState) {
     const { currentNoteId } = this.state;
@@ -101,8 +105,7 @@ export default class App extends Component {
   };
 
   focusCurrentNote = () => {
-    const { noteTextRef } = this.state;
-    noteTextRef.current.focus();
+    this.noteTextRef.current.focus();
   };
 
   deleteCurrentNoteIfEmpty = () => {
@@ -126,7 +129,7 @@ export default class App extends Component {
   changeCurrentNoteId = (id) => this.setState({ currentNoteId: id });
 
   render() {
-    const { notes, noteTextRef, currentNoteId } = this.state;
+    const { notes, currentNoteId, searchPhrase } = this.state;
     const currentNote = notes.find((note) => note.id === currentNoteId);
 
     return (
@@ -140,10 +143,20 @@ export default class App extends Component {
             Add note
           </button>
           <div className='note-search-container d-flex justify-content-between my-4'>
-            <input type='text' className='form-control note-search-input' />
+            <input
+              type='text'
+              className='form-control note-search-input'
+              ref={this.searchFieldRef}
+            />
             <button
               type='button'
               className='btn btn-outline-primary note-search-btn '
+              // todo: reafactor below code into method
+              onClick={() =>
+                this.setState({
+                  searchPhrase: this.searchFieldRef.current.value.toLowerCase(),
+                })
+              }
             >
               Search
             </button>
@@ -151,6 +164,7 @@ export default class App extends Component {
           <h5>All Notes </h5>
           <NotePreviewList
             notes={notes}
+            searchPhrase={searchPhrase}
             currentNoteId={currentNoteId}
             changeCurrentNote={this.changeCurrentNoteId}
             deleteNote={this.deleteNote}
@@ -158,7 +172,7 @@ export default class App extends Component {
         </aside>
         <NoteDetails
           note={currentNote}
-          noteTextRef={noteTextRef}
+          noteTextRef={this.noteTextRef}
           editNoteText={this.editCurentNoteText}
           editNoteTitle={this.editCurentNoteTitle}
           editNoteTimestamp={this.editCurrentNoteTimestamp}

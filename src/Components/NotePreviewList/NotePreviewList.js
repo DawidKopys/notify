@@ -6,11 +6,23 @@ import NotePreview from 'Components/NotePreview/NotePreview';
 
 export default class NotePreviewList extends Component {
   render() {
-    const { notes, currentNoteId, changeCurrentNote, deleteNote } = this.props;
+    const {
+      notes,
+      searchPhrase,
+      currentNoteId,
+      changeCurrentNote,
+      deleteNote,
+    } = this.props;
+
+    const notesToDisplay = notes.filter(
+      (note) =>
+        note.text.toLowerCase().includes(searchPhrase) ||
+        note.title.toLowerCase().includes(searchPhrase)
+    );
 
     return (
       <div className='overflow-auto flex-grow-1'>
-        {notes.map((note) => (
+        {notesToDisplay.map((note) => (
           <NotePreview
             noteTitle={note.title}
             noteText={note.text}
@@ -35,6 +47,7 @@ NotePreviewList.propTypes = {
       title: PropTypes.string,
     })
   ).isRequired,
+  searchPhrase: PropTypes.string.isRequired,
   currentNoteId: PropTypes.string.isRequired,
   changeCurrentNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired,
