@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './NotePreview.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './NotePreview.scss';
 
 class NotePreview extends Component {
   handleDeleteNote = (e) => {
@@ -26,7 +26,6 @@ class NotePreview extends Component {
       active,
       theme,
     } = this.props;
-    const themeClass = theme === 'LIGHT' ? 'light-theme' : 'dark-theme';
     const noteTextEmptyClass = noteText ? '' : 'note-preview__note-text--empty';
     const text = noteText === '' ? 'Create note...' : noteText;
     const activeClass = active ? 'note-preview--active' : '';
@@ -36,7 +35,7 @@ class NotePreview extends Component {
         role='button'
         onClick={() => changeCurrentNote(noteId)}
         onKeyPress={this.handleKeyPress}
-        className={`note-preview mb-3 ${themeClass} ${activeClass}`}
+        className={`note-preview mb-3 ${theme} ${activeClass}`}
         tabIndex={0}
       >
         <button
@@ -59,7 +58,7 @@ class NotePreview extends Component {
 
 NotePreview.defaultProps = {
   active: false,
-  theme: 'LIGHT',
+  theme: 'light-theme',
 };
 
 NotePreview.propTypes = {
@@ -69,7 +68,7 @@ NotePreview.propTypes = {
   changeCurrentNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired,
   active: PropTypes.bool,
-  theme: PropTypes.oneOf(['LIGHT', 'DARK']),
+  theme: PropTypes.oneOf(['light-theme', 'dark-theme']),
 };
 
 const mapStateToProps = (store) => ({ theme: store.theme });

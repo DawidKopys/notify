@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './NotePreviewList.css';
+import { connect } from 'react-redux';
+import './NotePreviewList.scss';
 
 import NotePreview from 'Components/NotePreview/NotePreview';
 
-export default class NotePreviewList extends Component {
+class NotePreviewList extends Component {
   render() {
     const {
       notes,
@@ -12,6 +13,7 @@ export default class NotePreviewList extends Component {
       currentNoteId,
       changeCurrentNote,
       deleteNote,
+      theme,
     } = this.props;
 
     const notesToDisplay = notes.filter(
@@ -26,7 +28,7 @@ export default class NotePreviewList extends Component {
 
     return (
       <>
-        <h5>{heading}</h5>
+        <h5 className={`note-preview-list__heading ${theme}`}>{heading}</h5>
         <div className='overflow-auto flex-grow-1'>
           {notesToDisplay.map((note) => (
             <NotePreview
@@ -45,6 +47,10 @@ export default class NotePreviewList extends Component {
   }
 }
 
+NotePreviewList.defaultProps = {
+  theme: 'light-theme',
+};
+
 NotePreviewList.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.exact({
@@ -58,4 +64,9 @@ NotePreviewList.propTypes = {
   currentNoteId: PropTypes.string.isRequired,
   changeCurrentNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired,
+  theme: PropTypes.oneOf(['light-theme', 'dark-theme']),
 };
+
+const mapStateToProps = (store) => ({ theme: store.theme });
+
+export default connect(mapStateToProps)(NotePreviewList);

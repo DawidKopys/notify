@@ -1,0 +1,11 @@
+@import 'bootstrap/scss/bootstrap';
+
+.note-preview-list__heading {
+  &.light-theme {
+    color: $gray-900;
+  }
+
+  &.dark-theme {
+    color: $gray-200;
+  }
+}

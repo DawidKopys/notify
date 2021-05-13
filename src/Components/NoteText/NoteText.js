@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './NoteText.scss';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import './NoteText.scss';
 import withDateUpdater from 'Components/HOCs/withDateUpdater';
 
 class NoteText extends Component {
@@ -11,12 +12,13 @@ class NoteText extends Component {
       disabled,
       handleBlur,
       handleChange,
+      theme,
     } = this.props;
     const colorClass = disabled ? 'text-secondary bg-light' : 'text-body';
 
     return (
       <textarea
-        className={`form-control note-text w-100 flex-grow-1  ${colorClass}`}
+        className={`form-control note-text w-100 flex-grow-1  ${colorClass} ${theme}`}
         placeholder='Create note...'
         value={noteText}
         onChange={handleChange}
@@ -29,6 +31,10 @@ class NoteText extends Component {
   }
 }
 
+NoteText.defaultProps = {
+  theme: 'light-theme',
+};
+
 NoteText.propTypes = {
   noteText: PropTypes.string.isRequired,
   noteTextRef: PropTypes.oneOfType([
@@ -38,6 +44,9 @@ NoteText.propTypes = {
   disabled: PropTypes.bool.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  theme: PropTypes.oneOf(['light-theme', 'dark-theme']),
 };
 
-export default withDateUpdater(NoteText);
+const mapStateToProps = (store) => ({ theme: store.theme });
+
+export default connect(mapStateToProps)(withDateUpdater(NoteText));

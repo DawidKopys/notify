@@ -135,15 +135,14 @@ class App extends Component {
     const { theme } = this.props;
     const { notes, currentNoteId, searchPhrase } = this.state;
     const currentNote = notes.find((note) => note.id === currentNoteId);
-    const themeClass = theme === 'LIGHT' ? 'light-theme' : 'dark-theme';
 
     return (
-      <div className={`root-container ${themeClass}`}>
+      <div className={`root-container ${theme}`}>
         <HorizontalSplit>
           <aside className='pl-3 d-flex my-4 flex-column'>
             <button
               type='button'
-              className='btn btn-primary note-add-btn'
+              className={`btn note-add-btn ${theme}`}
               onClick={this.addNote}
             >
               Add note
@@ -172,13 +171,12 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  theme: 'LIGHT',
+  theme: 'light-theme',
 };
 
 App.propTypes = {
-  theme: PropTypes.oneOf(['LIGHT', 'DARK']),
+  theme: PropTypes.oneOf(['light-theme', 'dark-theme']),
 };
 
 const mapStateToProps = (store) => ({ theme: store.theme });
-
 export default connect(mapStateToProps)(App);

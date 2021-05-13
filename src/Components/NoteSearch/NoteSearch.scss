@@ -1,3 +1,5 @@
+@import 'bootstrap/scss/bootstrap';
+
 .note-search-container {
   margin-right: 2rem;
 
@@ -12,5 +14,28 @@
   .note-search-clear-btn {
     top: 4px;
     right: 8px;
+  }
+
+  /* Colors */
+  &.light-theme {
+    .note-search-btn {
+      @include button-outline-variant($primary);
+    }
+
+    .note-search-input:focus {
+      border-color: lighten($primary, 25%) !important;
+      box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+    }
+  }
+
+  &.dark-theme {
+    .note-search-btn {
+      @include button-outline-variant($success);
+    }
+
+    .note-search-input:focus {
+      border-color: lighten($success, 25%);
+      box-shadow: 0 0 0 0.2rem rgba($success, 0.25);
+    }
   }
 }

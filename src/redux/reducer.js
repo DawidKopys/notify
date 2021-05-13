@@ -1,10 +1,16 @@
 import { createStore } from 'redux';
 
-export const setThemeLight = () => ({ type: 'SET_THEME', payload: 'LIGHT' });
+export const setThemeLight = () => ({
+  type: 'SET_THEME',
+  payload: 'light-theme',
+});
 
-export const setThemeDark = () => ({ type: 'SET_THEME', payload: 'DARK' });
+export const setThemeDark = () => ({
+  type: 'SET_THEME',
+  payload: 'dark-theme',
+});
 
-const initialStore = { theme: 'DARK' };
+const initialStore = { theme: 'light-theme' };
 
 const reducer = (store = initialStore, action) => {
   switch (action.type) {

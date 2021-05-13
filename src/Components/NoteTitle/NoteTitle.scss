@@ -1,6 +1,22 @@
 @import 'Src/variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
 .note-title {
   padding-left: $note-details-padding-left;
   font-size: 1.25rem !important;
+
+  &.light-theme {
+    &:focus {
+      border-color: lighten($primary, 25%);
+      box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+    }
+  }
+
+  &.dark-theme {
+    &:focus {
+      border-color: lighten($success, 25%);
+      box-shadow: 0 0 0 0.2rem rgba($success, 0.25);
+    }
+  }
 }

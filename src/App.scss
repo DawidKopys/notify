@@ -4,6 +4,14 @@
 
 .note-add-btn {
   margin-right: 2rem;
+
+  &.light-theme {
+    @include button-variant($primary, $primary);
+  }
+
+  &.dark-theme {
+    @include button-variant($success, $success);
+  }
 }
 
 .root-container {
