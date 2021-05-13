@@ -22,11 +22,6 @@
     #{$font-size} * #{$line-height} * #{$line-number} + #{$padding} * 2 - #{$height-correction-factor}
   );
 
-  .close {
-    line-height: 0.6 !important;
-    @include invisible(hidden);
-  }
-
   &::after {
     position: absolute;
     content: '';
@@ -37,6 +32,12 @@
     border-width: 8px;
     bottom: 0;
     right: 0;
+  }
+
+  /* Close button */
+  .close {
+    line-height: 0.6 !important;
+    @include invisible(hidden);
   }
 
   &:hover {
@@ -82,6 +83,11 @@
       border-left-color: $gray-200;
     }
 
+    .close {
+      color: black;
+      text-shadow: 0 1px 0 white;
+    }
+
     &:hover,
     &.note-preview--active {
       background-color: $gray-200;
@@ -94,28 +100,33 @@
   }
 
   &.dark-theme {
-    background-color: $gray-700;
+    background-color: $gray-800;
     border-color: $success;
-    color: $gray-100;
+    color: $gray-200;
 
     .note-preview__note-text--empty {
       color: $gray-300;
     }
 
     &::after {
-      border-top-color: $gray-600;
-      border-right-color: white;
-      border-bottom-color: white;
-      border-left-color: $gray-600;
+      border-top-color: $gray-700;
+      border-right-color: $gray-900;
+      border-bottom-color: $gray-900;
+      border-left-color: $gray-700;
+    }
+
+    .close {
+      color: white;
+      text-shadow: 0 1px 0 black;
     }
 
     &:hover,
     &.note-preview--active {
-      background-color: $gray-600;
+      background-color: $gray-700;
 
       &::after {
-        border-top: 8px solid $gray-400;
-        border-left: 8px solid $gray-400;
+        border-top: 8px solid $gray-500;
+        border-left: 8px solid $gray-500;
       }
     }
   }

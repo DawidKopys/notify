@@ -5,3 +5,9 @@
 .note-add-btn {
   margin-right: 2rem;
 }
+
+.root-container {
+  &.dark-theme {
+    background-color: $gray-900;
+  }
+}

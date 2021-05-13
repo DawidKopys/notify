@@ -59,6 +59,7 @@ class NotePreview extends Component {
 
 NotePreview.defaultProps = {
   active: false,
+  theme: 'LIGHT',
 };
 
 NotePreview.propTypes = {
@@ -68,7 +69,7 @@ NotePreview.propTypes = {
   changeCurrentNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired,
   active: PropTypes.bool,
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.oneOf(['LIGHT', 'DARK']),
 };
 
 const mapStateToProps = (store) => ({ theme: store.theme });

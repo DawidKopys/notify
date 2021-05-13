@@ -1,6 +1,8 @@
 import React, { Component, createRef } from 'react';
 import './App.scss';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
 import NotePreviewList from 'Components/NotePreviewList/NotePreviewList';
@@ -9,7 +11,7 @@ import HorizontalSplit from 'Components/HorizontalSplit/HorizontalSplit';
 
 import getCurrentDate from 'Src/utilities';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     notes: [
       {
@@ -130,37 +132,53 @@ export default class App extends Component {
   editSearchPhrase = (phrase) => this.setState({ searchPhrase: phrase });
 
   render() {
+    const { theme } = this.props;
     const { notes, currentNoteId, searchPhrase } = this.state;
     const currentNote = notes.find((note) => note.id === currentNoteId);
+    const themeClass = theme === 'LIGHT' ? 'light-theme' : 'dark-theme';
 
     return (
-      <HorizontalSplit>
-        <aside className='pl-3 d-flex flex-column'>
-          <button
-            type='button'
-            className='btn btn-primary note-add-btn mt-4'
-            onClick={this.addNote}
-          >
-            Add note
-          </button>
-          <NoteSearch editSearchPhrase={this.editSearchPhrase} />
-          <NotePreviewList
-            notes={notes}
-            searchPhrase={searchPhrase}
-            currentNoteId={currentNoteId}
-            changeCurrentNote={this.changeCurrentNote}
-            deleteNote={this.deleteNote}
+      <div className={`root-container ${themeClass}`}>
+        <HorizontalSplit>
+          <aside className='pl-3 d-flex my-4 flex-column'>
+            <button
+              type='button'
+              className='btn btn-primary note-add-btn'
+              onClick={this.addNote}
+            >
+              Add note
+            </button>
+            <NoteSearch editSearchPhrase={this.editSearchPhrase} />
+            <NotePreviewList
+              notes={notes}
+              searchPhrase={searchPhrase}
+              currentNoteId={currentNoteId}
+              changeCurrentNote={this.changeCurrentNote}
+              deleteNote={this.deleteNote}
+            />
+          </aside>
+          <NoteDetails
+            note={currentNote}
+            noteTextRef={this.noteTextRef}
+            editNoteText={this.editCurentNoteText}
+            editNoteTitle={this.editCurentNoteTitle}
+            editNoteTimestamp={this.editCurrentNoteTimestamp}
+            noteEditDisabled={!currentNote}
           />
-        </aside>
-        <NoteDetails
-          note={currentNote}
-          noteTextRef={this.noteTextRef}
-          editNoteText={this.editCurentNoteText}
-          editNoteTitle={this.editCurentNoteTitle}
-          editNoteTimestamp={this.editCurrentNoteTimestamp}
-          noteEditDisabled={!currentNote}
-        />
-      </HorizontalSplit>
+        </HorizontalSplit>
+      </div>
     );
   }
 }
+
+App.defaultProps = {
+  theme: 'LIGHT',
+};
+
+App.propTypes = {
+  theme: PropTypes.oneOf(['LIGHT', 'DARK']),
+};
+
+const mapStateToProps = (store) => ({ theme: store.theme });
+
+export default connect(mapStateToProps)(App);
