@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './NotePreview.scss';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class NotePreview extends Component {
+class NotePreview extends Component {
   handleDeleteNote = (e) => {
     const { noteId, deleteNote } = this.props;
     deleteNote(noteId);
@@ -23,19 +24,19 @@ export default class NotePreview extends Component {
       noteId,
       changeCurrentNote,
       active,
+      theme,
     } = this.props;
-    const textColorClass = noteText ? '' : 'text-secondary';
+    const themeClass = theme === 'LIGHT' ? 'light-theme' : 'dark-theme';
+    const noteTextEmptyClass = noteText ? '' : 'note-preview__note-text--empty';
     const text = noteText === '' ? 'Create note...' : noteText;
-    const borderClass = active
-      ? 'border-top border-left note-preview--active'
-      : 'border-top';
+    const activeClass = active ? 'note-preview--active' : '';
 
     return (
       <div
         role='button'
         onClick={() => changeCurrentNote(noteId)}
         onKeyPress={this.handleKeyPress}
-        className={`note-preview mb-3 border-primary ${borderClass}`}
+        className={`note-preview mb-3 ${themeClass} ${activeClass}`}
         tabIndex={0}
       >
         <button
@@ -48,7 +49,9 @@ export default class NotePreview extends Component {
           <span aria-hidden='true'>&times;</span>
         </button>
         {noteTitle && <h6 className='mb-0'>{noteTitle}</h6>}
-        <p className={`mb-0 ${textColorClass}`}>{text}</p>
+        <p className={`note-preview__note-text mb-0 ${noteTextEmptyClass}`}>
+          {text}
+        </p>
       </div>
     );
   }
@@ -65,4 +68,9 @@ NotePreview.propTypes = {
   changeCurrentNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired,
   active: PropTypes.bool,
+  theme: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = (store) => ({ theme: store.theme });
+
+export default connect(mapStateToProps)(NotePreview);

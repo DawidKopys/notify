@@ -10,12 +10,8 @@
 
   user-select: none;
   width: calc(#{$sidebar-width} - 3rem);
-  border-radius: 3px;
   cursor: pointer;
   position: relative;
-  white-space: pre-wrap;
-  text-align: start;
-  background-color: $gray-100;
 
   /* Only show $line-number of lines */
   overflow: hidden;
@@ -25,14 +21,6 @@
   max-height: calc(
     #{$font-size} * #{$line-height} * #{$line-number} + #{$padding} * 2 - #{$height-correction-factor}
   );
-
-  h6 {
-    line-height: $line-height;
-    font-size: $font-size !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
   .close {
     line-height: 0.6 !important;
@@ -45,27 +33,90 @@
     display: block;
     width: 0;
     height: 0;
-    border-top: 8px solid $gray-200;
-    border-right: 8px solid white;
-    border-bottom: 8px solid white;
-    border-left: 8px solid $gray-200;
+    border-style: solid;
+    border-width: 8px;
     bottom: 0;
     right: 0;
-  }
-
-  &:hover,
-  &.note-preview--active {
-    background-color: $gray-200 !important;
-
-    &::after {
-      border-top: 8px solid $gray-400;
-      border-left: 8px solid $gray-400;
-    }
   }
 
   &:hover {
     .close {
       @include invisible(visible);
+    }
+  }
+
+  /* Text */
+  h6 {
+    line-height: $line-height;
+    font-size: $font-size !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  white-space: pre-wrap;
+  text-align: start;
+
+  /* Border */
+  border-top: 1px solid;
+  border-radius: 3px;
+
+  &.note-preview--active {
+    border-left: 1px solid;
+  }
+
+  /* Colors */
+  &.light-theme {
+    background-color: $gray-100;
+    border-color: $primary;
+    color: $gray-900;
+
+    .note-preview__note-text--empty {
+      color: $gray-600;
+    }
+
+    &::after {
+      border-top-color: $gray-200;
+      border-right-color: white;
+      border-bottom-color: white;
+      border-left-color: $gray-200;
+    }
+
+    &:hover,
+    &.note-preview--active {
+      background-color: $gray-200;
+
+      &::after {
+        border-top: 8px solid $gray-400;
+        border-left: 8px solid $gray-400;
+      }
+    }
+  }
+
+  &.dark-theme {
+    background-color: $gray-700;
+    border-color: $success;
+    color: $gray-100;
+
+    .note-preview__note-text--empty {
+      color: $gray-300;
+    }
+
+    &::after {
+      border-top-color: $gray-600;
+      border-right-color: white;
+      border-bottom-color: white;
+      border-left-color: $gray-600;
+    }
+
+    &:hover,
+    &.note-preview--active {
+      background-color: $gray-600;
+
+      &::after {
+        border-top: 8px solid $gray-400;
+        border-left: 8px solid $gray-400;
+      }
     }
   }
 }
