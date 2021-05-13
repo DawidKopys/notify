@@ -148,7 +148,7 @@ export default class App extends Component {
             notes={notes}
             searchPhrase={searchPhrase}
             currentNoteId={currentNoteId}
-            changeCurrentNote={this.changeCurrentNoteId}
+            changeCurrentNote={this.changeCurrentNote}
             deleteNote={this.deleteNote}
           />
         </aside>
