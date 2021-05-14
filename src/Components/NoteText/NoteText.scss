@@ -7,16 +7,38 @@
   resize: none;
 
   &.light-theme {
+    color: $gray-900;
+    background-color: white;
+
     &:focus {
+      color: $gray-900;
+      background-color: white;
       border-color: lighten($primary, 25%);
       box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+    }
+
+    &:disabled {
+      color: $gray-500;
+      background-color: white;
+      border-color: $gray-500;
     }
   }
 
   &.dark-theme {
+    color: $gray-200;
+    background-color: $gray-900;
+
     &:focus {
+      color: $gray-200;
+      background-color: $gray-900;
       border-color: lighten($success, 25%);
       box-shadow: 0 0 0 0.2rem rgba($success, 0.25);
+    }
+
+    &:disabled {
+      color: $gray-500;
+      background-color: $gray-900;
+      border-color: $gray-500;
     }
   }
 }

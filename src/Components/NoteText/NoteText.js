@@ -14,11 +14,10 @@ class NoteText extends Component {
       handleChange,
       theme,
     } = this.props;
-    const colorClass = disabled ? 'text-secondary bg-light' : 'text-body';
 
     return (
       <textarea
-        className={`form-control note-text w-100 flex-grow-1  ${colorClass} ${theme}`}
+        className={`form-control note-text w-100 flex-grow-1 ${theme}`}
         placeholder='Create note...'
         value={noteText}
         onChange={handleChange}
