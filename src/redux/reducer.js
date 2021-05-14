@@ -10,13 +10,21 @@ export const setThemeDark = () => ({
   payload: 'dark-theme',
 });
 
-const initialStore = { theme: 'dark-theme' };
+export const toggleTheme = () => ({
+  type: 'TOGGLE_THEME',
+});
+
+const initialStore = { theme: 'light-theme' };
 
 const reducer = (store = initialStore, action) => {
   switch (action.type) {
     case 'SET_THEME':
       return { ...store, theme: action.payload };
-
+    case 'TOGGLE_THEME':
+      return {
+        ...store,
+        theme: store.theme === 'light-theme' ? 'dark-theme' : 'light-theme',
+      };
     default:
       return store;
   }

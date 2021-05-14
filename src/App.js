@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import NavBar from 'Components/NavBar/NavBar';
 import NoteDetails from 'Components/NoteDetails/NoteDetails';
 import NotePreviewList from 'Components/NotePreviewList/NotePreviewList';
 import NoteSearch from 'Components/NoteSearch/NoteSearch';
@@ -138,18 +139,7 @@ class App extends Component {
 
     return (
       <div className={`root-container ${theme}`}>
-        <nav className='navbar navbar-dark bg-dark'>
-          <div className='container'>
-            <a className='navbar-brand' href='/'>
-              NOTIFY
-            </a>
-            <form className='form-inline'>
-              <button className='btn btn-outline-light' type='button'>
-                Light Theme
-              </button>
-            </form>
-          </div>
-        </nav>
+        <NavBar />
         <HorizontalSplit>
           <aside className='d-flex my-4 flex-column'>
             <button
