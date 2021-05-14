@@ -2,7 +2,7 @@
 
 .horizontal-split-container {
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - 56px);
 
   > :nth-child(1) {
     flex-basis: $sidebar-width;

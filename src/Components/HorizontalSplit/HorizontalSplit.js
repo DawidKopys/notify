@@ -13,7 +13,7 @@ export default class HorizontalSplit extends Component {
     }
 
     return (
-      <div className='container pt-5 d-flex horizontal-split-container'>
+      <div className='container d-flex horizontal-split-container'>
         {children}
       </div>
     );

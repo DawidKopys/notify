@@ -138,8 +138,20 @@ class App extends Component {
 
     return (
       <div className={`root-container ${theme}`}>
+        <nav className='navbar navbar-dark bg-dark'>
+          <div className='container'>
+            <a className='navbar-brand' href='/'>
+              NOTIFY
+            </a>
+            <form className='form-inline'>
+              <button className='btn btn-outline-light' type='button'>
+                Light Theme
+              </button>
+            </form>
+          </div>
+        </nav>
         <HorizontalSplit>
-          <aside className='pl-3 d-flex my-4 flex-column'>
+          <aside className='d-flex my-4 flex-column'>
             <button
               type='button'
               className={`btn note-add-btn ${theme}`}

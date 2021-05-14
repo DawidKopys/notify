@@ -2,6 +2,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'variables';
 
+.navbar-brand {
+  letter-spacing: 0.2rem;
+}
+
 .note-add-btn {
   margin-right: 2rem;
 

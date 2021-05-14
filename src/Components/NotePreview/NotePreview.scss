@@ -9,7 +9,7 @@
   $height-correction-factor: 3px;
 
   user-select: none;
-  width: calc(#{$sidebar-width} - 3rem);
+  width: calc(#{$sidebar-width} - 2rem);
   cursor: pointer;
   position: relative;
 

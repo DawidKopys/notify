@@ -17,7 +17,7 @@ export default class NoteDetails extends Component {
     } = this.props;
 
     return (
-      <main className='my-4 mx-3 d-flex flex-column'>
+      <main className='my-4 ml-3 d-flex flex-column'>
         <NoteTitle
           noteTitle={note.title}
           editContent={editNoteTitle}
