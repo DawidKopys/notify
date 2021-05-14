@@ -14,12 +14,11 @@ class NoteTitle extends Component {
       handleChange,
       theme,
     } = this.props;
-    const bgColorClass = noteEditDisabled ? 'bg-light' : '';
 
     return (
       <input
         type='text'
-        className={`form-control note-title text-body ${bgColorClass} ${theme}`}
+        className={`form-control note-title ${theme}`}
         placeholder='Title'
         value={noteTitle}
         onChange={handleChange}

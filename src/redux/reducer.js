@@ -10,7 +10,7 @@ export const setThemeDark = () => ({
   payload: 'dark-theme',
 });
 
-const initialStore = { theme: 'dark-theme' };
+const initialStore = { theme: 'light-theme' };
 
 const reducer = (store = initialStore, action) => {
   switch (action.type) {

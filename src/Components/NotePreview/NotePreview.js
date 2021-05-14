@@ -40,7 +40,7 @@ class NotePreview extends Component {
       >
         <button
           type='button'
-          className='close'
+          className={`close ${theme}`}
           aria-label='Close'
           onClick={this.handleDeleteNote}
           tabIndex={0}

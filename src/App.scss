@@ -19,3 +19,65 @@
     background-color: $gray-900;
   }
 }
+
+.form-control {
+  &.light-theme {
+    color: $gray-900;
+    background-color: white;
+    border-color: $gray-500;
+
+    &:focus {
+      color: $gray-900;
+      background-color: white;
+      border-color: lighten($primary, 25%);
+      box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+    }
+
+    &:hover:not(:disabled):not(:focus) {
+      border-color: $gray-900;
+    }
+
+    &:disabled {
+      color: $gray-500;
+      background-color: white;
+      border-color: $gray-500;
+    }
+  }
+
+  &.dark-theme {
+    color: $gray-200;
+    background-color: $gray-900;
+    border-color: $gray-600;
+
+    &:focus {
+      color: $gray-200;
+      background-color: $gray-900;
+      border-color: lighten($success, 25%);
+      box-shadow: 0 0 0 0.2rem rgba($success, 0.25);
+    }
+
+    &:hover:not(:disabled):not(:focus) {
+      border-color: $gray-200;
+    }
+
+    &:disabled {
+      color: $gray-600;
+      background-color: $gray-900;
+      border-color: $gray-600;
+    }
+  }
+}
+
+.close {
+  &.light-theme,
+  &.light-theme:hover {
+    color: black;
+    text-shadow: 0 1px 0 white;
+  }
+
+  &.dark-theme,
+  &.dark-theme:hover {
+    color: white;
+    text-shadow: 0 1px 0 $gray-900;
+  }
+}

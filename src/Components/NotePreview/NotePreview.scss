@@ -68,9 +68,9 @@
 
   /* Colors */
   &.light-theme {
+    color: $gray-900;
     background-color: $gray-100;
     border-color: $primary;
-    color: $gray-900;
 
     .note-preview__note-text--empty {
       color: $gray-600;
@@ -81,11 +81,6 @@
       border-right-color: white;
       border-bottom-color: white;
       border-left-color: $gray-200;
-    }
-
-    .close {
-      color: black;
-      text-shadow: 0 1px 0 white;
     }
 
     &:hover,
@@ -100,9 +95,9 @@
   }
 
   &.dark-theme {
+    color: $gray-200;
     background-color: $gray-800;
     border-color: $success;
-    color: $gray-200;
 
     .note-preview__note-text--empty {
       color: $gray-300;
@@ -113,11 +108,6 @@
       border-right-color: $gray-900;
       border-bottom-color: $gray-900;
       border-left-color: $gray-700;
-    }
-
-    .close {
-      color: white;
-      text-shadow: 0 1px 0 black;
     }
 
     &:hover,

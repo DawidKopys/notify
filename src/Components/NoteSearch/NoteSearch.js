@@ -47,14 +47,14 @@ class NoteSearch extends Component {
         <div className='position-relative'>
           <input
             type='text'
-            className='form-control note-search-input'
+            className={`form-control note-search-input ${theme}`}
             value={inputText}
             onChange={this.handleInputChange}
             onKeyPress={this.handleEnter}
           />
           <button
             type='button'
-            className={`close float-none position-absolute note-search-clear-btn ${clearBtnVisibilityClass}`}
+            className={`close float-none position-absolute note-search-clear-btn ${clearBtnVisibilityClass} ${theme}`}
             aria-label='Close'
             onClick={this.clearSearchPhrase}
           >
